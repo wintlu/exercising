@@ -46,26 +46,16 @@
   (let [possible-nums (product-of-digits 100 1000)]
     (first (filter symmetric-number? possible-nums))))
 
-;(largest-palindrome-product)
-
 ;problem 5
-(defn primes-to [x]
-  (loop [primes []
-         raw (range 2 (inc x))]
-    (if (empty? raw)
-      primes
-      (recur (conj primes (first raw))
-             (remove #(zero? (rem % (first raw))) raw)))))
-
 (defn gcd [a b]
-  (if (zero? b) 
-    a
-    (if (> a b)
-      (gcd (-' a b) b)
-      (gcd a (-' b a)))))
+  (if (pos? b)
+    (gcd b (rem a b))
+    a))
 
 (defn lcd [a b]
-  (/ (*' a b) (gcd a b)))
+  (let [x (/ (* a b) (gcd a b))]
+    x))
 
 (defn problem5 []
-  (reduce lcd (range 2 14)))
+  (reduce lcd (range 2 20)))
+
