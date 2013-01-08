@@ -59,3 +59,13 @@
 (defn problem5 []
   (reduce lcd (range 2 20)))
 
+;problem6
+(defn sum-of-square [x]
+  (reduce + (map #(* % %) (range (inc x)))))
+
+(defn square-of-sum [x]
+  (#(* % %) (reduce + (range (inc x)))))
+
+(defn problem6 []
+  (- (square-of-sum 100) (sum-of-square 100)))
+
