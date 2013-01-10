@@ -69,3 +69,9 @@
 (defn problem6 []
   (- (square-of-sum 100) (sum-of-square 100)))
 
+;problem7
+(defn sieve [s]
+  (cons (first s)
+        (lazy-seq (sieve (filter #(not= 0 (mod % (first s))) (rest s))))))
+(defn problem7 []
+  (last (take 10001 (sieve (iterate inc 2)))))
